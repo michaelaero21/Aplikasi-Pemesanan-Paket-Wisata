@@ -19,6 +19,8 @@ function tambahDataRegistrasi($nama, $email, $telepon, $alamat, $paket) {
     file_put_contents($dataFile, json_encode($dataRegistrasi, JSON_PRETTY_PRINT));
 }
 
+$message = '';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nama = $_POST['nama'];
     $email = $_POST['email'];
@@ -28,9 +30,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!empty($nama) && !empty($email) && !empty($telepon) && !empty($alamat) && !empty($paket)) {
         tambahDataRegistrasi($nama, $email, $telepon, $alamat, $paket);
-        echo "Registrasi berhasil!";
+        $message = "Registrasi berhasil!";
     } else {
-        echo "Semua field harus diisi!";
+        $message = "Semua field harus diisi!";
     }
 }
 ?>
@@ -62,6 +64,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <h1>Formulir Registrasi Paket Wisata</h1>
+    <?php if ($message): ?>
+        <p><?php echo $message; ?></p>
+    <?php endif; ?>
     <form action="registrasi.php" method="POST" onsubmit="return validateForm()">
         <label for="nama">Nama:</label><br>
         <input type="text" id="nama" name="nama" required><br><br>
