@@ -1,5 +1,5 @@
 <?php
-$dataFile = 'data.json';
+$dataFile = '../data/data.json'; 
 $dataRegistrasi = json_decode(file_get_contents($dataFile), true) ?? [];
 
 // Fungsi untuk menambah data ke file JSON
@@ -47,6 +47,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             var email = document.getElementById('email').value;
             var telepon = document.getElementById('telepon').value;
             var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            var namaPattern = /^[A-Za-z\s]+$/; 
+
+            if (!namaPattern.test(nama)) {
+                alert("Nama tidak boleh mengandung angka atau karakter khusus.");
+                return false;
+            }
 
             if (!emailPattern.test(email)) {
                 alert("Email tidak valid.");
