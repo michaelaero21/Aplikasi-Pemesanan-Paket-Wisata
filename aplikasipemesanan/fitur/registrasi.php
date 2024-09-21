@@ -3,13 +3,15 @@ $dataFile = 'data.json';
 $dataRegistrasi = json_decode(file_get_contents($dataFile), true) ?? [];
 
 // Fungsi untuk menambah data ke file JSON
-function tambahDataRegistrasi($nama, $email, $telepon) {
+function tambahDataRegistrasi($nama, $email, $telepon, $alamat, $paket) {
     global $dataRegistrasi, $dataFile;
-
+    // Update fungsi untuk menerima alamat dan paket
     $registrasiBaru = [
         'nama' => $nama,
         'email' => $email,
         'telepon' => $telepon,
+        'alamat' => $alamat,
+        'paket' => $paket,
         'tanggal' => date('Y-m-d H:i:s')
     ];
 
@@ -21,9 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nama = $_POST['nama'];
     $email = $_POST['email'];
     $telepon = $_POST['telepon'];
+    $alamat = $_POST['alamat'];  
+    $paket = $_POST['paket'];     
 
-    if (!empty($nama) && !empty($email) && !empty($telepon)) {
-        tambahDataRegistrasi($nama, $email, $telepon);
+    if (!empty($nama) && !empty($email) && !empty($telepon) && !empty($alamat) && !empty($paket)) {
+        tambahDataRegistrasi($nama, $email, $telepon, $alamat, $paket);
         echo "Registrasi berhasil!";
     } else {
         echo "Semua field harus diisi!";
