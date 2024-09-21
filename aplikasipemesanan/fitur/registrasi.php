@@ -36,10 +36,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Form Registrasi</title>
+    <script>
+        function validateForm() {
+            var email = document.getElementById('email').value;
+            var telepon = document.getElementById('telepon').value;
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailPattern.test(email)) {
+                alert("Email tidak valid.");
+                return false;
+            }
+
+            if (isNaN(telepon) || telepon.length < 10) {
+                alert("Nomor telepon harus berupa angka dan minimal 10 digit.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
 </head>
 <body>
     <h1>Formulir Registrasi Paket Wisata</h1>
-    <form action="form-registrasi.php" method="POST">
+    <form action="registrasi.php" method="POST" onsubmit="return validateForm()">
         <label for="nama">Nama:</label><br>
         <input type="text" id="nama" name="nama" required><br><br>
 
