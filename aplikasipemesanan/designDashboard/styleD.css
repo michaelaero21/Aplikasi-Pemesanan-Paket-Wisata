@@ -50,3 +50,30 @@ input[type="submit"]:hover {
     background-color: #218838;
 }
 
+/* Style for error and success messages */
+p.error {
+    color: red;
+    text-align: center;
+    font-size: 14px;
+}
+
+p.success {
+    color: green;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Style for page heading */
+h1 {
+    text-align: center;
+    color: #333;
+    margin-top: 30px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    form {
+        width: 90%;
+    }
+}
+
