@@ -1,9 +1,10 @@
 <?php
-$dataFile = '../data/data.json'; 
+$dataFile = '../data/data.json';
 $dataRegistrasi = json_decode(file_get_contents($dataFile), true) ?? [];
 
 // Fungsi untuk menambah data ke file JSON
-function tambahDataRegistrasi($nama, $email, $telepon, $alamat, $paket) {
+function tambahDataRegistrasi($nama, $email, $telepon, $alamat, $paket)
+{
     global $dataRegistrasi, $dataFile;
     // Update fungsi untuk menerima alamat dan paket
     $registrasiBaru = [
@@ -25,8 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nama = $_POST['nama'];
     $email = $_POST['email'];
     $telepon = $_POST['telepon'];
-    $alamat = $_POST['alamat'];  
-    $paket = $_POST['paket'];     
+    $alamat = $_POST['alamat'];
+    $paket = $_POST['paket'];
 
     if (!empty($nama) && !empty($email) && !empty($telepon) && !empty($alamat) && !empty($paket)) {
         tambahDataRegistrasi($nama, $email, $telepon, $alamat, $paket);
@@ -39,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Form Registrasi</title>
@@ -48,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             var email = document.getElementById('email').value;
             var telepon = document.getElementById('telepon').value;
             var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            var namaPattern = /^[A-Za-z\s]+$/; 
+            var namaPattern = /^[A-Za-z\s]+$/;
 
             if (!namaPattern.test(nama)) {
                 alert("Nama tidak boleh mengandung angka atau karakter khusus.");
@@ -69,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     </script>
 </head>
+
 <body>
     <h1>Daftarkan Akun Anda</h1>
     <?php if ($message): ?>
@@ -88,13 +91,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="text" id="alamat" name="alamat" required><br><br>
 
         <label for="paket">Pilih Paket Wisata:</label><br>
-            <select id="paket" name="paket" required>
-                <option value="Paket A">Paket A</option>
-                <option value="Paket B">Paket B</option>
-                <option value="Paket C">Paket C</option>
-            </select><br><br>
-            
+        <select id="paket" name="paket" required>
+            <option value="Paket A">Paket A</option>
+            <option value="Paket B">Paket B</option>
+            <option value="Paket C">Paket C</option>
+        </select><br><br>
+
         <input type="submit" value="Daftar">
     </form>
 </body>
+
 </html>
