@@ -74,6 +74,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
     <h1>Daftarkan Akun Anda</h1>
+    <link rel="stylesheet" href="../design_aplikasi/designRegister/style.css">
+
     <?php if ($message): ?>
         <p><?php echo $message; ?></p>
     <?php endif; ?>
