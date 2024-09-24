@@ -44,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Form Registrasi</title>
     <script>
         function validateForm() {
+            var nama = document.getElementById('nama').value;
             var email = document.getElementById('email').value;
             var telepon = document.getElementById('telepon').value;
             var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -69,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </script>
 </head>
 <body>
-    <h1>Formulir Registrasi Paket Wisata</h1>
+    <h1>Daftarkan Akun Anda</h1>
     <?php if ($message): ?>
         <p><?php echo $message; ?></p>
     <?php endif; ?>
