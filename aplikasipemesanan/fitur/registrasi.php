@@ -42,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Form Registrasi</title>
+    <link rel="stylesheet" href="../design_aplikasi/designRegister/style.css">
     <script>
         function validateForm() {
             var nama = document.getElementById('nama').value;
