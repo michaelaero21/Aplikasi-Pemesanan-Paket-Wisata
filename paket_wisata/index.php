@@ -31,12 +31,20 @@ $paket_wisata = json_decode($json_data, true);
             color: #155724;
             border-color: #c3e6cb;
         }
+
+        .paket-wisata {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
     </style>
 </head>
 
 <body>
     <h1>Halaman Utama</h1>
     <h2>Daftar Paket Wisata</h2>
+
     <!-- Menampilkan notifikasi kesalahan jika nama atau nomor telepon tidak valid -->
     <?php if (isset($_GET['error'])): ?>
         <?php if ($_GET['error'] == 'nama_angka'): ?>
@@ -59,14 +67,30 @@ $paket_wisata = json_decode($json_data, true);
 
     <!-- Menampilkan daftar paket wisata -->
     <?php foreach ($paket_wisata as $paket): ?>
-        <div>
+        <div class="package-card">
             <h2><?= $paket['nama'] ?></h2>
-            <p><?= $paket['deskripsi'] ?></p>
-            <p>Harga: Rp <?= number_format($paket['harga'], 0, ',', '.') ?></p>
-            <p>Durasi: <?= $paket['durasi'] ?></p>
+            <img src="<?= $paket['gambar'] ?>" alt="<?= $paket['nama'] ?>" style="max-width: 300px; height: auto;  margin: 0 auto;">
+            
+            <div class="info-box">
+                <label>Deskripsi:</label>
+                <p><?= $paket['deskripsi'] ?></p>
+            </div>
+            <div class="info-box">
+                <label>Harga:</label>
+                <p>Rp <?= number_format($paket['harga'], 0, ',', '.') ?></p>
+            </div>
+            <div class="info-box">
+                <label>Durasi:</label>
+                <p><?= $paket['durasi'] ?></p>
+            </div>
+
             <!-- Formulir pemesanan -->
             <form action="proses_pemesanan.php" method="POST">
                 <input type="hidden" name="paket_id" value="<?= $paket['id'] ?>">
+                <input type="hidden" name="deskripsi" value="<?= $paket['deskripsi'] ?>">
+                <input type="hidden" name="harga" value="<?= $paket['harga'] ?>">
+                <input type="hidden" name="durasi" value="<?= $paket['durasi'] ?>">
+
                 <div>
                     <label for="nama">Nama:</label>
                     <input type="text" name="nama" required>
