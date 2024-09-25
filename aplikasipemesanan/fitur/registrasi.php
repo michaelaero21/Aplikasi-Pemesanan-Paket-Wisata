@@ -42,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Form Registrasi</title>
+    <link rel="stylesheet" href="../designRegister/style.css">
     <script>
         function validateForm() {
             var nama = document.getElementById('nama').value;
@@ -86,13 +87,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <label for="alamat">Alamat:</label><br>
         <input type="text" id="alamat" name="alamat" required><br><br>
-
-        <label for="paket">Pilih Paket Wisata:</label><br>
-            <select id="paket" name="paket" required>
-                <option value="Paket A">Paket A</option>
-                <option value="Paket B">Paket B</option>
-                <option value="Paket C">Paket C</option>
-            </select><br><br>
             
         <input type="submit" value="Daftar">
     </form>
