@@ -11,79 +11,7 @@ $paket_wisata = json_decode($json_data, true);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paket Wisata</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f8ff;
-            margin: 0;
-            padding: 0;
-        }
 
-        .container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            /* Tiga kolom */
-            gap: 20px;
-            /* Jarak antar kolom */
-            padding: 20px;
-        }
-
-        .paket {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            text-align: center;
-        }
-
-        .paket img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
-
-        .paket h2 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-
-        .paket p {
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        form div {
-            margin-bottom: 10px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        input[type="text"],
-        input[type="email"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        button {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #218838;
-        }
-    </style>
 </head>
 
 <body>
