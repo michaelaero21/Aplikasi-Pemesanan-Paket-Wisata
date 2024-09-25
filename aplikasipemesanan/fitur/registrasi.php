@@ -1,9 +1,10 @@
 <?php
-$dataFile = '../data/data.json'; 
+$dataFile = '../data/data.json';
 $dataRegistrasi = json_decode(file_get_contents($dataFile), true) ?? [];
 
 // Fungsi untuk menambah data ke file JSON
-function tambahDataRegistrasi($nama, $email, $telepon, $alamat) {
+function tambahDataRegistrasi($nama, $email, $telepon, $alamat)
+{
     global $dataRegistrasi, $dataFile;
     $registrasiBaru = [
         'nama' => $nama,
@@ -23,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nama = $_POST['nama'];
     $email = $_POST['email'];
     $telepon = $_POST['telepon'];
-    $alamat = $_POST['alamat']; 
+    $alamat = $_POST['alamat'];
 
     if (!empty($nama) && !empty($email) && !empty($telepon) && !empty($alamat)) {
         tambahDataRegistrasi($nama, $email, $telepon, $alamat);
@@ -36,68 +37,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Form Registrasi</title>    
-    <link rel="stylesheet" href="../designRegister/style.css"> 
-    <script>
-        function validateForm() {
-            var nama = document.getElementById('nama').value;
-            var email = document.getElementById('email').value;
-            var telepon = document.getElementById('telepon').value;
-            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            var namaPattern = /^[A-Za-z\s]+$/;
-            var setuju = document.getElementById('setuju').checked;
-
-            if (!namaPattern.test(nama)) {
-                alert("Nama tidak boleh mengandung angka atau karakter khusus.");
-                return false;
-            }
-
-            if (!emailPattern.test(email)) {
-                alert("Email tidak valid.");
-                return false;
-            }
-
-            if (isNaN(telepon) || telepon.length < 10) {
-                alert("Nomor telepon harus berupa angka dan minimal 10 digit.");
-                return false;
-            }
-
-            if (!setuju) {
-                alert("Anda harus menyetujui syarat dan ketentuan.");
-                return false;
-            }
-
-            return true;
-        }
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Registrasi</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <h1>Daftarkan Akun Anda</h1>
-    <?php if ($message): ?>
-        <p><?php echo $message; ?></p>
-    <?php endif; ?>
-    <form action="registrasi.php" method="POST" onsubmit="return validateForm()">
-        <label for="nama">Nama:</label><br>
-        <input type="text" id="nama" name="nama" required><br><br>
-
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required><br><br>
-
-        <label for="telepon">Telepon:</label><br>
-        <input type="text" id="telepon" name="telepon" required><br><br>
-
-        <label for="alamat">Alamat:</label><br>
-        <input type="text" id="alamat" name="alamat" required><br><br>
-
-        <!-- Checkbox Syarat dan Ketentuan -->
-        <label>
-            <input type="checkbox" id="setuju" name="setuju" required>
-            Saya setuju dengan <a href="#">syarat dan ketentuan</a>
-        </label><br><br>
-        
-        <input type="submit" value="Daftar">
-    </form>
+    <div class="background-container">
+        <div class="container">
+            <h2>Registrasi Pantai</h2>
+            <form>
+                <div class="input-group">
+                    <label for="name">Nama</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="phone">Telepon</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="input-group">
+                    <label for="address">Alamat</label>
+                    <textarea id="address" name="address" required></textarea>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">Saya setuju dengan <a href="#">syarat dan ketentuan</a></label>
+                </div>
+                <button type="submit">Daftar</button>
+            </form>
+        </div>
+    </div>
 </body>
+
 </html>
