@@ -2,16 +2,17 @@
 $dataFile = '../data/data.json'; 
 $dataRegistrasi = json_decode(file_get_contents($dataFile), true) ?? [];
 
+// Definisikan variabel message di awal
+$message = ''; 
+
 // Fungsi untuk menambah data ke file JSON
-function tambahDataRegistrasi($nama, $email, $telepon, $alamat, $paket) {
+function tambahDataRegistrasi($nama, $email, $telepon, $alamat) {
     global $dataRegistrasi, $dataFile;
-    // Update fungsi untuk menerima alamat dan paket
     $registrasiBaru = [
         'nama' => $nama,
         'email' => $email,
         'telepon' => $telepon,
         'alamat' => $alamat,
-        'paket' => $paket,
         'tanggal' => date('Y-m-d H:i:s')
     ];
 
@@ -19,20 +20,19 @@ function tambahDataRegistrasi($nama, $email, $telepon, $alamat, $paket) {
     file_put_contents($dataFile, json_encode($dataRegistrasi, JSON_PRETTY_PRINT));
 }
 
-$message = '';
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nama = $_POST['nama'];
     $email = $_POST['email'];
     $telepon = $_POST['telepon'];
     $alamat = $_POST['alamat'];  
-    $paket = $_POST['paket'];     
+    $syaratKetentuan = isset($_POST['syarat_ketentuan']); // Cek apakah checkbox disetujui
 
-    if (!empty($nama) && !empty($email) && !empty($telepon) && !empty($alamat) && !empty($paket)) {
-        tambahDataRegistrasi($nama, $email, $telepon, $alamat, $paket);
+    // Pastikan semua field harus diisi dan syarat ketentuan disetujui
+    if (!empty($nama) && !empty($email) && !empty($telepon) && !empty($alamat) && $syaratKetentuan) {
+        tambahDataRegistrasi($nama, $email, $telepon, $alamat);
         $message = "Registrasi berhasil!";
     } else {
-        $message = "Semua field harus diisi!";
+        $message = "Semua field harus diisi dan syarat & ketentuan harus disetujui!";
     }
 }
 ?>
@@ -42,11 +42,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Form Registrasi</title>
+    <link rel="stylesheet" href="../designRegister/style.css">
     <script>
         function validateForm() {
             var nama = document.getElementById('nama').value;
             var email = document.getElementById('email').value;
             var telepon = document.getElementById('telepon').value;
+            var alamat = document.getElementById('alamat').value; 
+            var syaratKetentuan = document.getElementById('syarat_ketentuan').checked; // Cek checkbox
+
             var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             var namaPattern = /^[A-Za-z\s]+$/; 
 
@@ -62,6 +66,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if (isNaN(telepon) || telepon.length < 10) {
                 alert("Nomor telepon harus berupa angka dan minimal 10 digit.");
+                return false;
+            }
+
+            if (!alamat) {
+                alert("Alamat harus diisi.");
+                return false;
+            }
+
+            if (!syaratKetentuan) {
+                alert("Anda harus menyetujui syarat dan ketentuan.");
                 return false;
             }
 
@@ -87,13 +101,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label for="alamat">Alamat:</label><br>
         <input type="text" id="alamat" name="alamat" required><br><br>
 
-        <label for="paket">Pilih Paket Wisata:</label><br>
-            <select id="paket" name="paket" required>
-                <option value="Paket A">Paket A</option>
-                <option value="Paket B">Paket B</option>
-                <option value="Paket C">Paket C</option>
-            </select><br><br>
-            
+        <input type="checkbox" id="syarat_ketentuan" name="syarat_ketentuan">
+        <label for="syarat_ketentuan" style="display: inline;">Saya menyetujui syarat dan ketentuan.</label><br><br>
+
         <input type="submit" value="Daftar">
     </form>
 </body>
