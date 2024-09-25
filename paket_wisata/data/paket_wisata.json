@@ -4,14 +4,16 @@
         "nama": "Paket Wisata Bali",
         "deskripsi": "Nikmati keindahan pantai dan budaya Bali.",
         "harga": 2500000,
-        "durasi": "3 Hari 2 Malam"
+        "durasi": "3 Hari 2 Malam",
+        "gambar1" : "bali1.jpg"
     },
     {
         "id": 2,
         "nama": "Paket Wisata Lombok",
         "deskripsi": "Menjelajahi alam dan pantai di Lombok.",
         "harga": 2200000,
-        "durasi": "4 Hari 3 Malam"
+        "durasi": "4 Hari 3 Malam",
+        "gambar2": "lombok1"
         
     },
     {
@@ -19,6 +21,7 @@
         "nama": "Paket Wisata Bandung",
         "deskripsi": "Eksplorasi kota Bandung, destinasi wisata alam dan belanja yang menawan.",
         "harga": 2500000,
-        "durasi": "3 hari 2 malam"
+        "durasi": "3 hari 2 malam",
+        "gambar3" : "bandung2.jpeg"
     }
 ]
