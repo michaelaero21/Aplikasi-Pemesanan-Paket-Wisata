@@ -28,10 +28,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!empty($nama) && !empty($email) && !empty($telepon) && !empty($alamat)) {
         tambahDataRegistrasi($nama, $email, $telepon, $alamat);
-        $message = "Registrasi berhasil!";
+        // Redirect ke halaman yang sama dengan pesan sukses
+        header('Location: registrasi.php?status=success');
+        exit;
     } else {
         $message = "Semua field harus diisi!";
     }
+}
+
+// Cek apakah ada status sukses di URL
+if (isset($_GET['status']) && $_GET['status'] === 'success') {
+    $message = "Registrasi berhasil!";
 }
 ?>
 
@@ -46,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
+<<<<<<< HEAD
     <div class="background-container">
         <div class="container">
             <h2>Registrasi Pantai</h2>
@@ -74,6 +82,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
         </div>
     </div>
+=======
+    <!-- Menampilkan pesan sukses atau error -->
+    <?php if ($message): ?>
+        <p style="color: green; text-align: center; font-weight: bold;"><?php echo $message; ?></p>
+    <?php endif; ?>
+    
+    <h1>Daftarkan Akun Anda</h1>
+    
+    <!-- Kontainer Form -->
+    <form action="registrasi.php" method="POST" onsubmit="return validateForm()">
+        <label for="nama">Nama:</label><br>
+        <input type="text" id="nama" name="nama" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="telepon">Telepon:</label><br>
+        <input type="text" id="telepon" name="telepon" required><br><br>
+
+        <label for="alamat">Alamat:</label><br>
+        <input type="text" id="alamat" name="alamat" required><br><br>
+
+        <!-- Checkbox Syarat dan Ketentuan -->
+        <label>
+            <input type="checkbox" id="setuju" name="setuju" required>
+            Saya setuju dengan <a href="#">syarat dan ketentuan</a>
+        </label><br><br>
+        
+        <input type="submit" value="Daftar">
+    </form>
+>>>>>>> 09dee5d4bf377cbe4f50e74c3ffa854df7e874d6
 </body>
 
 </html>
