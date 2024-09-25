@@ -10,6 +10,7 @@ $paket_wisata = json_decode($json_data, true);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paket Wisata</title>
+    <link rel="stylesheet" href="../designDashboard/indexS.css"> 
     <style>
         .notification {
             padding: 15px;

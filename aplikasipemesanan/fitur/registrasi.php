@@ -1,18 +1,15 @@
 <?php
-$dataFile = '../data/data.json';
+$dataFile = '../data/data.json'; 
 $dataRegistrasi = json_decode(file_get_contents($dataFile), true) ?? [];
 
 // Fungsi untuk menambah data ke file JSON
-function tambahDataRegistrasi($nama, $email, $telepon, $alamat, $paket)
-{
+function tambahDataRegistrasi($nama, $email, $telepon, $alamat) {
     global $dataRegistrasi, $dataFile;
-    // Update fungsi untuk menerima alamat dan paket
     $registrasiBaru = [
         'nama' => $nama,
         'email' => $email,
         'telepon' => $telepon,
         'alamat' => $alamat,
-        'paket' => $paket,
         'tanggal' => date('Y-m-d H:i:s')
     ];
 
@@ -26,11 +23,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nama = $_POST['nama'];
     $email = $_POST['email'];
     $telepon = $_POST['telepon'];
-    $alamat = $_POST['alamat'];
-    $paket = $_POST['paket'];
+    $alamat = $_POST['alamat']; 
 
-    if (!empty($nama) && !empty($email) && !empty($telepon) && !empty($alamat) && !empty($paket)) {
-        tambahDataRegistrasi($nama, $email, $telepon, $alamat, $paket);
+    if (!empty($nama) && !empty($email) && !empty($telepon) && !empty($alamat)) {
+        tambahDataRegistrasi($nama, $email, $telepon, $alamat);
         $message = "Registrasi berhasil!";
     } else {
         $message = "Semua field harus diisi!";
@@ -40,10 +36,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Form Registrasi</title>
+    <title>Form Registrasi</title>    
+    <link rel="stylesheet" href="../designRegister/style.css"> 
     <script>
         function validateForm() {
             var nama = document.getElementById('nama').value;
@@ -51,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             var telepon = document.getElementById('telepon').value;
             var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             var namaPattern = /^[A-Za-z\s]+$/;
+            var setuju = document.getElementById('setuju').checked;
 
             if (!namaPattern.test(nama)) {
                 alert("Nama tidak boleh mengandung angka atau karakter khusus.");
@@ -67,11 +64,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 return false;
             }
 
+            if (!setuju) {
+                alert("Anda harus menyetujui syarat dan ketentuan.");
+                return false;
+            }
+
             return true;
         }
     </script>
 </head>
-
 <body>
     <h1>Daftarkan Akun Anda</h1>
     <?php if ($message): ?>
@@ -90,15 +91,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label for="alamat">Alamat:</label><br>
         <input type="text" id="alamat" name="alamat" required><br><br>
 
-        <label for="paket">Pilih Paket Wisata:</label><br>
-        <select id="paket" name="paket" required>
-            <option value="Paket A">Paket A</option>
-            <option value="Paket B">Paket B</option>
-            <option value="Paket C">Paket C</option>
-        </select><br><br>
-
+        <!-- Checkbox Syarat dan Ketentuan -->
+        <label>
+            <input type="checkbox" id="setuju" name="setuju" required>
+            Saya setuju dengan <a href="#">syarat dan ketentuan</a>
+        </label><br><br>
+        
         <input type="submit" value="Daftar">
     </form>
 </body>
-
 </html>
