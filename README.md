@@ -9,19 +9,17 @@ Jika PHP terinstal, Anda akan melihat versi PHP yang terpasang. Jika belum terin
 
 **Langkah 1: Buka Terminal atau Command Prompt**
 
-Buka terminal atau command prompt, lalu navigasikan ke folder proyek yang berisi file `index.php` atau `registrasi.php`.
+Buka terminal atau command prompt, lalu navigasikan ke folder proyek yang berisi file `registrasi.php`.
 
-Untuk folder `aplikasipemesanan`: cd path/to/your/project/aplikasipemesanan/fitur
-Untuk folder `paket_wisata`:cd path/to/your/project/paket_wisata
+Untuk folder `aplikasipemesanan`: cd path/to/your/project/aplikasipemesanan
 
 > Pastikan Anda mengganti `path/to/your/project/` dengan direktori aktual tempat proyek Anda berada.
 
 **Langkah 2: Menjalankan Server PHP pada Port 8080**
 Untuk menjalankan server PHP pada `localhost:8080`, gunakan perintah berikut: php -S localhost:8080
 
-Jika Anda berada di folder `aplikasipemesanan/fitur`, ini akan menjalankan file `registrasi.php`. Jika Anda berada di folder `paket_wisata`, ini akan menjalankan `index.php` pada `localhost:8080`.
+Jika Anda berada di folder `aplikasipemesanan`, ini akan menjalankan file `registrasi.php` terlebih dahulu dan ketika berhasil submit, kemudian akan dilanjutkan dengan file `index.php` yang berisi paket wisata pada `localhost:8080`.
 
 3. **Mengakses Aplikasi di Browser**
 Setelah menjalankan server, buka browser dan masukkan URL berikut:
 - Untuk **registrasi** (folder `aplikasipemesanan`): http://localhost:8080/registrasi.php
-- Untuk **daftar paket wisata** (folder `paket_wisata`): http://localhost:8080/index.php
