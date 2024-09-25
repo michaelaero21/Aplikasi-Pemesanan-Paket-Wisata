@@ -1,12 +1,10 @@
 <?php
-// Baca data dari file JSON
 $json_data = file_get_contents('../data/paket_wisata.json');
 $paket_wisata = json_decode($json_data, true);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,26 +38,18 @@ $paket_wisata = json_decode($json_data, true);
         }
     </style>
 </head>
-
 <body>
     <h1>Halaman Utama</h1>
     <h2>Daftar Paket Wisata</h2>
 
-    <!-- Menampilkan notifikasi jika ada pesan -->
+    <!-- Menampilkan notifikasi sukses -->
     <?php if (isset($_GET['success'])): ?>
         <div class="notification notification-success">
-            <strong>Success:</strong> Selamat anda berhasil register, silahkan pilih paket wisata!
-        </div>
-    <?php elseif (isset($_GET['error'])): ?>
-        <div class="notification notification-error">
-            <strong>Error:</strong> 
-            <?php 
-            if ($_GET['error'] == 'nama_angka') {
-                echo "Nama tidak boleh mengandung angka!";
-            } elseif ($_GET['error'] == 'telepon_format') {
-                echo "Nomor telepon tidak valid! Pastikan nomor telepon hanya berisi angka dan minimal 10 digit.";
-            }
-            ?>
+            <?php if ($_GET['success'] === 'registrasi_berhasil'): ?>
+                <strong>Success:</strong> Registrasi anda berhasil! Silakan pilih paket wisata anda.
+            <?php elseif ($_GET['success'] === '1'): ?>
+                <strong>Success:</strong> Paket wisata anda berhasil dipesan!
+            <?php endif; ?>
         </div>
     <?php endif; ?>
 

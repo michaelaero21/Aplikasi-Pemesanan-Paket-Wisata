@@ -91,6 +91,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php if ($message): ?>
         <p><?php echo $message; ?></p>
     <?php endif; ?>
+
+    <!-- Menampilkan pesan sukses setelah redirect -->
+    <?php if (isset($_GET['success']) && $_GET['success'] == 'registrasi_berhasil'): ?>
+        <p style="color: green;">Registrasi anda berhasil! Silakan pilih paket wisata yang anda inginkan.</p>
+    <?php endif; ?>
+
     <form action="registrasi.php" method="POST" onsubmit="return validateForm()">
         <label for="nama">Nama:</label><br>
         <input type="text" id="nama" name="nama" required><br><br>
