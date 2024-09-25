@@ -20,16 +20,12 @@ function tambahDataRegistrasi($nama, $email, $telepon, $alamat)
 
 $message = '';
 $error = [];
-$formData = ['nama' => '', 'email' => '', 'telepon' => '', 'alamat' => '']; // Default form data
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nama = $_POST['nama'];
     $email = $_POST['email'];
     $telepon = $_POST['telepon'];
     $alamat = $_POST['alamat'];
-
-    // Simpan data form untuk ditampilkan kembali jika ada error
-    $formData = ['nama' => $nama, 'email' => $email, 'telepon' => $telepon, 'alamat' => $alamat];
 
     // Validasi input
     if (empty($nama) || !preg_match("/^[a-zA-Z\s]+$/", $nama)) {
@@ -56,8 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Cek apakah ada status sukses di URL
 if (isset($_GET['status']) && $_GET['status'] === 'success') {
     $message = "Registrasi berhasil!";
-    // Kosongkan data form setelah sukses
-    $formData = ['nama' => '', 'email' => '', 'telepon' => '', 'alamat' => ''];
 }
 ?>
 
@@ -69,29 +63,41 @@ if (isset($_GET['status']) && $_GET['status'] === 'success') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Halaman Registrasi</title>
     <link rel="stylesheet" href="../designRegister/style.css">
+    <link rel="stylesheet" href="../designRegister/notifikasi.css">
+    <script>
+        function closeNotification() {
+            var notification = document.getElementById('notification');
+            if (notification) {
+                notification.style.display = 'none';
+            }
+        }
+    </script>
 </head>
 
 <body>
 
     <!-- Menampilkan pesan sukses atau error -->
     <?php if ($message): ?>
-        <p style="color: red; text-align: center; font-weight: bold;"><?php echo $message; ?></p>
+        <div class="notification <?php echo isset($_GET['status']) && $_GET['status'] === 'success' ? 'notification-success' : 'notification-error'; ?>" id="notification">
+            <span class="close-btn" onclick="closeNotification()">✖</span>
+            <?php echo $message; ?>
+        </div>
     <?php endif; ?>
 
     <h1>Daftarkan Akun Anda</h1>
     <!-- Kontainer Form -->
     <form action="registrasi.php" method="POST">
         <label for="nama">Nama:</label><br>
-        <input type="text" id="nama" name="nama" value="<?php echo htmlspecialchars($formData['nama']); ?>" required><br><br>
+        <input type="text" id="nama" name="nama" required><br><br>
 
         <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($formData['email']); ?>" required><br><br>
+        <input type="email" id="email" name="email" required><br><br>
 
         <label for="telepon">Telepon:</label><br>
-        <input type="text" id="telepon" name="telepon" value="<?php echo htmlspecialchars($formData['telepon']); ?>" required><br><br>
+        <input type="text" id="telepon" name="telepon" required><br><br>
 
         <label for="alamat">Alamat:</label><br>
-        <input type="text" id="alamat" name="alamat" value="<?php echo htmlspecialchars($formData['alamat']); ?>" required><br><br>
+        <input type="text" id="alamat" name="alamat" required><br><br>
 
         <!-- Checkbox Syarat dan Ketentuan -->
         <label>
