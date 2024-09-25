@@ -27,10 +27,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!empty($nama) && !empty($email) && !empty($telepon) && !empty($alamat)) {
         tambahDataRegistrasi($nama, $email, $telepon, $alamat);
-        $message = "Registrasi berhasil!";
+        // Redirect ke halaman yang sama dengan pesan sukses
+        header('Location: registrasi.php?status=success');
+        exit;
     } else {
         $message = "Semua field harus diisi!";
     }
+}
+
+// Cek apakah ada status sukses di URL
+if (isset($_GET['status']) && $_GET['status'] === 'success') {
+    $message = "Registrasi berhasil!";
 }
 ?>
 
@@ -74,10 +81,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </script>
 </head>
 <body>
-    <h1>Daftarkan Akun Anda</h1>
+    <!-- Menampilkan pesan sukses atau error -->
     <?php if ($message): ?>
-        <p><?php echo $message; ?></p>
+        <p style="color: green; text-align: center; font-weight: bold;"><?php echo $message; ?></p>
     <?php endif; ?>
+    
+    <h1>Daftarkan Akun Anda</h1>
+    
+    <!-- Kontainer Form -->
     <form action="registrasi.php" method="POST" onsubmit="return validateForm()">
         <label for="nama">Nama:</label><br>
         <input type="text" id="nama" name="nama" required><br><br>
