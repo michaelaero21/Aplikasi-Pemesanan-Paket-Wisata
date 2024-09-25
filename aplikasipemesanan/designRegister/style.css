@@ -1,7 +1,7 @@
 /* Mengatur dasar gaya pada seluruh halaman */
 body {
     font-family: Arial, sans-serif;
-    background-image: "pantai.jpeg";
+    background-image: url("pantai.jpeg");
     margin: 0;
     padding: 0;
     display: flex;
