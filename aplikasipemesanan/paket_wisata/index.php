@@ -48,7 +48,7 @@ $paket_wisata = json_decode($json_data, true);
     <!-- Menampilkan notifikasi jika ada pesan -->
     <?php if (isset($_GET['success'])): ?>
         <div class="notification notification-success">
-            <strong>Success:</strong> Paket wisata pesanan Anda berhasil dipilih!
+            <strong>Success:</strong> Selamat anda berhasil register, silahkan pilih paket wisata!
         </div>
     <?php elseif (isset($_GET['error'])): ?>
         <div class="notification notification-error">
