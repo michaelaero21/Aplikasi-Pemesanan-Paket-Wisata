@@ -5,6 +5,41 @@
     box-sizing: border-box;
 }
 
+/* Gaya untuk info box */
+.info-box {
+    border: 1px solid #007BFF; /* Border untuk setiap info box */
+    border-radius: 4px;        /* Sudut border melengkung */
+    padding: 10px;             /* Jarak di dalam box */
+    margin-bottom: 10px;       /* Jarak antar box */
+    background-color: #f9f9f9; /* Warna latar belakang untuk box */
+    max-width: 450px;          /* Membatasi lebar maksimal info box agar sama dengan form */
+    margin: 10px auto;         /* Mengatur margin agar box berada di tengah */
+}
+
+.package-card {
+    display: flex;
+    flex-direction: column; /* Mengatur arah konten dalam kolom */
+    align-items: center; /* Mengatur konten agar berada di tengah secara horizontal */
+    background: #fff;
+    border-radius: 8px;
+    margin: 20px 0;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid #007BFF; 
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.package-card img {
+    max-width: 100%; /* Mengatur lebar gambar agar responsif */
+    height: auto; /* Menjaga rasio aspek gambar */
+}
+
+.package-card > div {
+    max-width: 30%; /* Agar tidak lebih besar dari kontainer */
+    width: 100%; /* Agar memenuhi lebar kontainer */
+}
+
+
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
     background-color: #f4f6f9;
