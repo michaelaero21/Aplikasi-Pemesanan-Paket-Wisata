@@ -1,6 +1,6 @@
 <?php
 // Baca data dari file JSON
-$json_data = file_get_contents('data/paket_wisata.json');
+$json_data = file_get_contents('../data/paket_wisata.json');
 $paket_wisata = json_decode($json_data, true);
 ?>
 
@@ -45,23 +45,10 @@ $paket_wisata = json_decode($json_data, true);
     <h1>Halaman Utama</h1>
     <h2>Daftar Paket Wisata</h2>
 
-    <!-- Menampilkan notifikasi kesalahan jika nama atau nomor telepon tidak valid -->
-    <?php if (isset($_GET['error'])): ?>
-        <?php if ($_GET['error'] == 'nama_angka'): ?>
-            <div class="notification notification-error">
-                <strong>Error:</strong> Nama tidak boleh berupa angka. Silakan masukkan nama yang benar.
-            </div>
-        <?php elseif ($_GET['error'] == 'telepon_format'): ?>
-            <div class="notification notification-error">
-                <strong>Error:</strong> Nomor telepon harus berisi minimal 10 digit dan hanya terdiri dari angka.
-            </div>
-        <?php endif; ?>
-    <?php endif; ?>
-
-    <!-- Menampilkan notifikasi sukses jika pemesanan berhasil -->
+    <!-- Menampilkan notifikasi sukses jika registrasi berhasil -->
     <?php if (isset($_GET['success'])): ?>
         <div class="notification notification-success">
-            <strong>Success:</strong> Paket wisata berhasil dipesan!
+            <strong>Success:</strong> Registrasi berhasil! Anda dapat memilih paket wisata.
         </div>
     <?php endif; ?>
 
@@ -69,7 +56,8 @@ $paket_wisata = json_decode($json_data, true);
     <?php foreach ($paket_wisata as $paket): ?>
         <div class="package-card">
             <h2><?= $paket['nama'] ?></h2>
-            <img src="<?= $paket['gambar'] ?>" alt="<?= $paket['nama'] ?>" style="max-width: 300px; height: auto;  margin: 0 auto;">
+            <!-- Kode gambar ditambahkan di sini -->
+            <img src="<?= $paket['gambar'] ?>" alt="<?= $paket['nama'] ?>" style="max-width: 300px; height: auto;">
             
             <div class="info-box">
                 <label>Deskripsi:</label>
@@ -108,5 +96,4 @@ $paket_wisata = json_decode($json_data, true);
         </div>
     <?php endforeach; ?>
 </body>
-
 </html>

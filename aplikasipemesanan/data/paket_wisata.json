@@ -5,7 +5,7 @@
         "deskripsi": "Nikmati keindahan pantai dan budaya Bali.",
         "harga": 2500000,
         "durasi": "3 Hari 2 Malam",
-        "gambar": "images/bali1.jpg"
+        "gambar": "../images/bali.jpg"
     },
     {
         "id": 2,
@@ -13,7 +13,7 @@
         "deskripsi": "Menjelajahi alam dan pantai di Lombok.",
         "harga": 2200000,
         "durasi": "4 Hari 3 Malam",
-        "gambar": "images/lombok1.jpeg"
+        "gambar": "../images/lombok.jpg"
     },
     {
         "id": 3,
@@ -21,6 +21,6 @@
         "deskripsi": "Eksplorasi kota Bandung, destinasi wisata alam dan belanja yang menawan.",
         "harga": 2500000,
         "durasi": "3 Hari 2 Malam",
-        "gambar": "images/bandung2.jpeg"
+        "gambar": "../images/bandung.jpeg"
     }
 ]

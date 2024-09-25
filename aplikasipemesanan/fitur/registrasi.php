@@ -30,7 +30,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Pastikan semua field harus diisi dan syarat ketentuan disetujui
     if (!empty($nama) && !empty($email) && !empty($telepon) && !empty($alamat) && $syaratKetentuan) {
         tambahDataRegistrasi($nama, $email, $telepon, $alamat);
-        $message = "Registrasi berhasil!";
+        
+        // Redirect ke halaman paket wisata setelah berhasil registrasi
+        header("Location: ../paket_wisata/index.php?success=registrasi_berhasil");
+        exit();
     } else {
         $message = "Semua field harus diisi dan syarat & ketentuan harus disetujui!";
     }
