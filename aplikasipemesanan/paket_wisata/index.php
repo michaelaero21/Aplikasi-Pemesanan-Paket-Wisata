@@ -45,10 +45,21 @@ $paket_wisata = json_decode($json_data, true);
     <h1>Halaman Utama</h1>
     <h2>Daftar Paket Wisata</h2>
 
-    <!-- Menampilkan notifikasi sukses jika registrasi berhasil -->
+    <!-- Menampilkan notifikasi jika ada pesan -->
     <?php if (isset($_GET['success'])): ?>
         <div class="notification notification-success">
-            <strong>Success:</strong> Registrasi berhasil! Anda dapat memilih paket wisata.
+            <strong>Success:</strong> Paket wisata pesanan Anda berhasil dipilih!
+        </div>
+    <?php elseif (isset($_GET['error'])): ?>
+        <div class="notification notification-error">
+            <strong>Error:</strong> 
+            <?php 
+            if ($_GET['error'] == 'nama_angka') {
+                echo "Nama tidak boleh mengandung angka!";
+            } elseif ($_GET['error'] == 'telepon_format') {
+                echo "Nomor telepon tidak valid! Pastikan nomor telepon hanya berisi angka dan minimal 10 digit.";
+            }
+            ?>
         </div>
     <?php endif; ?>
 
@@ -56,7 +67,6 @@ $paket_wisata = json_decode($json_data, true);
     <?php foreach ($paket_wisata as $paket): ?>
         <div class="package-card">
             <h2><?= $paket['nama'] ?></h2>
-            <!-- Kode gambar ditambahkan di sini -->
             <img src="<?= $paket['gambar'] ?>" alt="<?= $paket['nama'] ?>" style="max-width: 300px; height: auto;">
             
             <div class="info-box">
