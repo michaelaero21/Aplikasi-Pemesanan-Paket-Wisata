@@ -22,4 +22,4 @@ Jika Anda berada di folder `aplikasipemesanan`, ini akan menjalankan file `regis
 
 3. **Mengakses Aplikasi di Browser**
 Setelah menjalankan server, buka browser dan masukkan URL berikut:
-- Untuk **registrasi** (folder `aplikasipemesanan`): http://localhost:8080/registrasi.php
+- Untuk **registrasi** (folder `aplikasipemesanan`): [http://localhost:8080/fitur/registrasi.php]
